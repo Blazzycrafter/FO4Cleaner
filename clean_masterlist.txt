@@ -1,0 +1,7 @@
+DLCRobot.esm
+DLCCoast.esm
+DLCNukaWorld.esm
+DLCworkshop01.esm
+DLCworkshop02.esm
+DLCworkshop03.esm
+
