@@ -81,4 +81,4 @@ if __name__ == '__main__':
     CleanFileList = cleanNames(CleanFileList)
     print(CleanFileList)
 
-    #SSEEDIT()
+    SSEEDIT()
