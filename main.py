@@ -78,7 +78,7 @@ def SSEEDIT():
 
             
 
-
+# legacy function not in use
 def cleanNames(CleanFileList):
     x = []
     for ESMFile in CleanFileList:
@@ -91,10 +91,10 @@ def cleanNames(CleanFileList):
 
 if __name__ == '__main__':
     loadTxt()
-    print(CleanFileList)
-    print(path)
-
-    CleanFileList = cleanNames(CleanFileList)
-    print(CleanFileList)
+    ## disabled
+    # print(CleanFileList)
+    # print(path)
+    
+    # print(CleanFileList)
 
     SSEEDIT()
