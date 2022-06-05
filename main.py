@@ -4,7 +4,7 @@ import os
 
 try:
     from settings import *
-    if fileversion not == "0.2":
+    if fileversion != "0.2":
         int('r')
 except:
     print("settings.py not found or file version wrong. creating...")
@@ -69,10 +69,10 @@ def SSEEDIT():
     global data, xedit, game
     for ESMFile in CleanFileList:
         print("cleaning "+ESMFile+"...")
-        if game not == "":
-            args = f'{xedit} -quickautoclean -autoexit -autoload "{ESMFile}" -D:{data} {game}'
+        if game != "":
+            args = f'{xedit} -quickautoclean -autoexit -autoload "{ESMFile}" -D:"{data}" {game}'
         else:
-            args = f'{xedit} -quickautoclean -autoexit -autoload "{ESMFile}" -D:{data}'
+            args = f'{xedit} -quickautoclean -autoexit -autoload "{ESMFile}" -D:"{data}"'
         print(args)
         subprocess.call(args, shell=False)
 
