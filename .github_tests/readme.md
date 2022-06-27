@@ -1,3 +1,0 @@
-# This Files exist to run Github actions
-xedit for running a test....
-and the file named dirty.els and dirty 2.esl are dirty and xedit must clean them.... in a test action via my script
