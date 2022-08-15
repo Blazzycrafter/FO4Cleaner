@@ -41,7 +41,7 @@ download_names = [] #  list with names for type file
 # example for sse:
 # master_list = "master_list.txt" > ["Skyrim.esm", "Update.esm", "HearthFires.esm", "Dragonborn.esm", "Dawnguard.esm"]
 # clean_list = "clean_list.txt" > [ "Update.esm", "HearthFires.esm", "Dragonborn.esm", "Dawnguard.esm"]
-clean_list = "masterlist.txt"
+clean_list = "clean_masterlist.txt"
 
 
 # path to F04Edit
