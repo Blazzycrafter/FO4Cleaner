@@ -1,6 +1,9 @@
 # file version 0.1 fo4
+import os
 import subprocess
 import requests
+
+import settings
 
 try:
     from settings import *
@@ -29,7 +32,6 @@ path = "E:\\\\SteamLibrary\\\\steamapps\\\\common\\\\Fallout 4"
 # use \\\\ instead of "\\"
 data = path + "\\Data"
 
-
 ##download section##
 #if you dont understand the code....
 #    DONT TOUCH THIS!
@@ -37,22 +39,28 @@ download_urls = []  #  list with raw urls
 download_types = [] #  list with types... possible are ["var", "file"]
 download_names = [] #  list with names for type file
 
+
+##Cleaning section
 # in this files are the files that need to be copied / cleaned stored as a list
 # example for sse:
 # master_list = "master_list.txt" > ["Skyrim.esm", "Update.esm", "HearthFires.esm", "Dragonborn.esm", "Dawnguard.esm"]
 # clean_list = "clean_list.txt" > [ "Update.esm", "HearthFires.esm", "Dragonborn.esm", "Dawnguard.esm"]
 clean_list = "clean_masterlist.txt"
 
+CleanAll = False
+Cleaning_extentions = [".esp",".esm",".esl"]
+Cleaning_ExceptionNames = ["ExeptCleaning"]
 
 # path to F04Edit
 # use \\\\ instead of "\\"
 # path + executable file name (c:\\.....\\F04Edit.exe)
 xedit = "C:\\\\Program Files (x86)\\\\FO4Edit\\\\FO4Edit.exe"
 
+
 # game
 # please set your game here or it will be tryed to use the name of xedit....
 # here are the inforemation from official documentation... (i hope its right...)
-# •  -<gamemode> can be any of the following: ['tes5vr', 'fo4vr', 'tes4', 'tes5', 'enderal', 'sse', 'fo3', 'fnv', 'fo4', 'fo76']
+# -<gamemode> can be any of the following: ['tes5vr', 'fo4vr', 'tes4', 'tes5', 'enderal', 'sse', 'fo3', 'fnv', 'fo4', 'fo76']
 # example
 # game="-fo3"
 game = ""
@@ -61,7 +69,7 @@ game = ""
     print("settings.py created. please edit it and run the script again.")
     exit()
 CleanFileList = []
-DEBUG = False
+DEBUG = True
 
 
 def dprint(string):
@@ -107,7 +115,7 @@ def SSEEDIT():
         else:
             args = f'{xedit} -quickautoclean -autoexit -autoload "{ESMFile}" -D:"{data}"'
         print(args)
-        subprocess.call(args, shell=False)
+        #subprocess.call(args, shell=False)
 
 
 # legacy function not in use
@@ -121,6 +129,18 @@ def cleanNames(CleanFileList):
     return x
 
 
+def get_all_Plugins():
+    x = os.listdir(settings.data)
+    dprint(x)
+    y = []
+    for i in x:
+        if i.endswith(tuple(settings.Cleaning_extentions)):
+            if not i.startswith(tuple(settings.Cleaning_ExceptionNames)):
+                y.append(i)
+
+
+    dprint(y)
+
 if __name__ == '__main__':
     print("start downloader")
     dprint("")
@@ -132,9 +152,9 @@ if __name__ == '__main__':
     loadTxt()
     print("done")
     print()
-    ## disabled
-    # print(CleanFileList)
-    # print(path)
+    dprint(CleanFileList)
+    dprint(path)
 
-    # print(CleanFileList)
-    SSEEDIT()
+    if settings.CleanAll:
+        CleanFileList = get_all_Plugins()
+    #SSEEDIT()
