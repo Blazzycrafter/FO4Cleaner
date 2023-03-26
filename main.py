@@ -3,23 +3,15 @@ import subprocess
 import winreg
 import os
 import sys
+import re
 
 
-arguments = sys.argv
-
-start_parameter = arguments[1:]
-
-debugq = start_parameter.count("-debug")
-
+DEBUG = "-debug" in sys.argv
 
 game = ""
 data = "\data"
 xedit = None
 
-if debugq:
-    DEBUG = True
-else:
-    DEBUG = False
 
 
 def dprint(string):
@@ -45,6 +37,32 @@ def SSEEDIT():
 
 
 
+
+def find_highest_version_folder(search_folder):
+    # Define the regular expression pattern to match the version number
+    pattern = re.compile(r'\d+\.\d+\.\d+')
+
+    # Set the initial highest version number to 0 and the corresponding folder name to None
+    highest_version = '0.0.0'
+    highest_folder = None
+
+    # Loop through all subdirectories in the search folder
+    for subdir in os.listdir(search_folder):
+        # Check if the subdirectory name starts with "FO4Edit"
+        if os.path.isdir(os.path.join(search_folder, subdir)) and subdir.startswith('FO4Edit'):
+            # Check if the subdirectory name contains a version number
+            match = pattern.search(subdir)
+            if match:
+                # Get the version number and compare it to the highest version so far
+                version = match.group()
+                if version > highest_version:
+                    highest_version = version
+                    highest_folder = os.path.join(search_folder, subdir)
+
+    # Return the absolute path of the folder with the highest version number found (or None if no matching folders were found)
+    return highest_folder
+
+
 def AutoGetPaths():
     global game, data, xedit
     try:
@@ -62,7 +80,8 @@ def AutoGetPaths():
             exit("Could not find game path in registry")
     finally:
         data = game + "data"
-        xedit = game + "FO4Edit 4.0.4\FO4Edit.exe"
+        f = find_highest_version_folder(game)
+        xedit = f + "\FO4Edit.exe"
 
 
 
@@ -75,5 +94,6 @@ if __name__ == '__main__':
     AutoGetPaths()
     print("Game path: ", game)
     print("Data path: ", data)
+
     print()
     SSEEDIT()
