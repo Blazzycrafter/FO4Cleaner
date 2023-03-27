@@ -12,7 +12,3 @@ or by downloading it manuel via output
 2: Run it...
 
 3: enjoy...
-
-### **DISCLAIMER**
-
-*You NEED FO4EDIT in version 4.0.4*
