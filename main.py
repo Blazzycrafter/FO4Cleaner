@@ -25,7 +25,7 @@ CleanFileList = ["DLCRobot.esm", "DLCCoast.esm", "DLCNukaWorld.esm", "DLCworksho
 
 
 
-def SSEEDIT():
+def fxedit():
     global data, xedit
     for ESMFile in CleanFileList:
         print("cleaning " + ESMFile + "...")
@@ -96,4 +96,4 @@ if __name__ == '__main__':
     print("Data path: ", data)
 
     print()
-    SSEEDIT()
+    fxedit()
