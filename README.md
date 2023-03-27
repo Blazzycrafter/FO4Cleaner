@@ -1,4 +1,4 @@
-# FO4CLEANER Oprimized for Collection "A Storywealth"
+# FO4CLEANER Op*r*imized for Collection "A Storywealth"
 
 
 ## Normal use
