@@ -7,7 +7,7 @@ import re
 
 
 DEBUG = "-debug" in sys.argv
-
+# yeah you can use debug
 game = ""
 data = "\data"
 xedit = None
@@ -15,7 +15,7 @@ xedit = None
 
 
 def dprint(string):
-    if DEBUG:
+    if DEBUG: # not in use currently
         print(string)
 
 
@@ -59,6 +59,8 @@ def find_highest_version_folder(search_folder):
                     highest_version = version
                     highest_folder = os.path.join(search_folder, subdir)
 
+
+
     # Return the absolute path of the folder with the highest version number found (or None if no matching folders were found)
     return highest_folder
 
@@ -97,3 +99,9 @@ if __name__ == '__main__':
 
     print()
     fxedit()
+    print()
+    print()
+    print()
+    print("all files should be cleaned now...")
+    input("you can close the pogram now savely via the x or by pressing enter")
+    exit(0)
